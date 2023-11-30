@@ -17,18 +17,20 @@ use Illuminate\Support\Facades\Route;
 
 
 
-//Route::group(function(){
+    Route::middleware('guest')->group(function(){
+
+        Route::get('/login', [AuthController::class, 'login_page'])->name('login');
+        Route::post('/login', [AuthController::class, 'login'])->name('submit_login');
+
+    });
     
-    //});
     
-    Route::get('/login', [AuthController::class, 'login_page'])->name('login');
+        
     
-    Route::post('/login', [AuthController::class, 'login'])->name('submit_login');    
-    
-    Route::middleware('auth')->group(function(){
+    Route::middleware('connected')->group(function(){
     
         //these routes are only displayed when the user is logged in
 
-        Route::get('/dashboard', [AuthController::class, 'index'])->name('dashboard');
+        Route::get('/', [AuthController::class, 'index'])->name('dashboard');
     });
 
