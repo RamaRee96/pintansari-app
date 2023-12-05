@@ -11,25 +11,26 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 
     {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+    @livewireStyles
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
         .font-family-karla { font-family: karla; }
-        .bg-sidebar { background: #3d68ff; }
-        .cta-btn { color: #3d68ff; }
-        .upgrade-btn { background: #1947ee; }
+        .bg-sidebar { background: #ff3dc5; }
+        .cta-btn { color: #ff3dc5; }
+        .upgrade-btn { background: #c91b95; }
         .upgrade-btn:hover { background: #0038fd; }
-        .active-nav-link { background: #1947ee; }
-        .nav-item:hover { background: #1947ee; }
-        .account-link:hover { background: #3d68ff; }
+        .active-nav-link { background: #c91b95; }
+        .nav-item:hover { background: #c91b95; }
+        .account-link:hover { background: #ff3dc5; }
     </style>
 </head>
 <body class="bg-gray-100 font-family-karla flex">
 
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
-            <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> New Report
+            <a href="" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Klinik Pintan Sari - Resepsionist</a>
+            <a href="patients/create"><button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                <i class="fas fa-plus mr-3"></i>New Patient</a>
             </button>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
@@ -142,6 +143,7 @@
         
     </div>
 
+    @livewireScripts
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <!-- Font Awesome -->

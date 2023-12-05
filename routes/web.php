@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +34,11 @@ use Illuminate\Support\Facades\Route;
         //these routes are only displayed when the user is logged in
 
         Route::get('/', [AuthController::class, 'index'])->name('dashboard');
+        
+        Route::prefix('patients')->group(function(){
+            
+            Route::get('create', [PatientController::class, 'create'])->name('patients_create');
+
+        });
     });
 
