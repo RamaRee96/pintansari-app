@@ -36,30 +36,31 @@
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
             </a>
-            <a href="/resepsionis" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/admin/resepsionis" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-notes-medical mr-3"></i>
                 Resepsionis
             </a>
-            <a href="/dokter" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/admin/dokter" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-stethoscope mr-3"></i>
                 Dokter
             </a>
-            <a href="/apoteker" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/admin/apoteker" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-user-nurse mr-3"></i>
                 Apoteker
             </a>
             @elseif (Auth::user()->role === 'resepsionis')
             <div class="p-6">
                 <a href="/" class="text-white text-2xl font-semibold uppercase hover:text-gray-300">Klinik Pintan Sari - Resepsionis</a>
-                <a href="patients/create"><button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                    <i class="fas fa-plus mr-3"></i>Pasien Baru</a>
+                <a href="patients/create">
+                <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                  <i class="fas fa-plus mr-3"></i>Pasien Baru</a>
                 </button>
             </div>
             <a href="/" class="flex items-center text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
             </a>
-            <a href="/" class="flex items-center text-white py-4 pl-6 nav-item">
+            <a href="/resepsionis/dataPasien" class="flex items-center text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Data Pasien Terdaftar
             </a>
@@ -71,6 +72,14 @@
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
             </a>
+            <a href="/dokter/rekam-medis" class="flex items-center text-white py-4 pl-6 nav-item">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Data Rekam Medis Pasien
+            </a>
+            <a href="/dokter/dataResep" class="flex items-center text-white py-4 pl-6 nav-item">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Data Resep
+            </a>
             @elseif (Auth::user()->role === 'apoteker')
             <div class="p-6">
                 <a href="/" class="text-white text-2xl font-semibold uppercase hover:text-gray-300">Klinik Pintan Sari - Apoteker</a>
@@ -78,6 +87,10 @@
             <a href="/" class="flex items-center text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
+            </a>
+            <a href="/" class="flex items-center text-white py-4 pl-6 nav-item">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Data Obat
             </a>
             @endif
         </nav>
@@ -92,7 +105,7 @@
                     <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400">
                 </button>
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
-                <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
+                <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16" style="z-index: 99">
                     <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
                     <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
                     <form action="/logout" method="post">

@@ -11,4 +11,9 @@ class ReceptionistController extends Controller
     {
         return view('/receptionist/index');
     }
+    public function dataPasien()
+    {
+        return view('/receptionist/dataPasien');
+    }
+
 }
