@@ -15,5 +15,9 @@ class ReceptionistController extends Controller
     {
         return view('/receptionist/dataPasien');
     }
+    public function editDataPasien()
+    {
+        return view('/receptionist/editDataPasien');
+    }
 
 }

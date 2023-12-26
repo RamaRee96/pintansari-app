@@ -11,7 +11,8 @@ class AuthController extends Controller
    
     //Profim Page
 
-    public function index(){
+    public function index()
+    {
         if(Auth::user()->role === 'admin'){
         return view('auth.dashboard');
         }
@@ -28,7 +29,8 @@ class AuthController extends Controller
     
     //Manage connection
    
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         
         //memungkinkan kita untuk mengambil semua data dari sebuah permintaan
 
@@ -52,11 +54,13 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login_page(){
+    public function login_page()
+    {
         return view('welcome');
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
  

@@ -3,9 +3,16 @@
 
 <div class="w-full overflow-x-hidden border-t flex flex-col">
     <main class="w-full h-screen flex-grow p-6">
-        <h1 class="text-3xl text-black pb-6">Data Pasien</h1>
+        <h1 class="text-3xl text-black pb-6">Obat</h1>
   
-        <h2 class="text-2xl text-gray-500 pb-2">Data Pasien Terdaftar</h2>
+        <h2 class="text-2xl text-gray-500 pb-2">Data Obat</h2>
+        <a href="/">
+          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> 
+              <path d="M7 12L12 12M12 12L17 12M12 12V7M12 12L12 17" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+              Tambah Obat
+          </button>
+        </a>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-gray-100 dark:bg-gray-900">
                 <div>
@@ -41,7 +48,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="text" id="table-search-users" class="block pl-7 p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for rekam medis">
+                    <input type="text" id="table-search-users" class="block pl-7 p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for obat">
                 </div>
             </div>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -54,7 +61,7 @@
                             Nama
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Tanggal Periksa
+                            Stok Obat
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Aksi
@@ -67,13 +74,13 @@
                             1
                         </th>
                         <td class="px-6 py-4">
-                            Rama
+                            Amoxilin
                         </td>
                         <td class="px-6 py-4">
-                            20-04-2020
+                            2
                         </td>
                         <td class="flex items-center px-6 py-4">
-                            <a href="/resepsionis/editDataPasien" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
                         </td>
                     </tr>
@@ -82,13 +89,13 @@
                             2
                         </th>
                         <td class="px-6 py-4">
-                            Reiswa
+                            Dexa
                         </td>
                         <td class="px-6 py-4">
-                            17-10-2020
+                            10
                         </td>
                         <td class="flex items-center px-6 py-4">
-                            <a href="/resepsionis/editDataPasien" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
                         </td>
                     </tr>

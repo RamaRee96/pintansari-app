@@ -100,7 +100,7 @@
   </main>
   
    <footer class="w-full bg-white text-gray-600 text-left p-4">
-        Copyright © Your Klinik Pintan Sari 2023
+        Copyright © Klinik Pintan Sari 2023
    </footer>
 </div>
 

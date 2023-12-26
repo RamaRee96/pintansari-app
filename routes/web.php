@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ApotekerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DokterController;
@@ -46,7 +47,7 @@ Route::middleware('connected')->group(function(){
     // Create Pasien
     Route::prefix('patients')->group(function(){
             
-        Route::get('create', [PatientController::class, 'create'])->name('patients_create');
+        Route::get('/create', [PatientController::class, 'create'])->name('patients_create');
 
     });
         
@@ -72,6 +73,7 @@ Route::group(['prefix' => 'admin'], function() {
 // Route Resepsionis
 Route::group(['prefix' => 'resepsionis'], function() {
     Route::get('/dataPasien', [ReceptionistController::class, 'dataPasien']);
+    Route::get('/editDataPasien', [ReceptionistController::class, 'editDataPasien']);
 
 });
 
@@ -80,6 +82,12 @@ Route::group(['prefix' => 'resepsionis'], function() {
 Route::group(['prefix' => 'dokter'], function() {
     Route::get('/rekam-medis', [DokterController::class, 'getRekamMedis']);
     Route::get('/dataResep', [DokterController::class, 'dataResep']);
+
+});
+
+// Route Apoteker
+Route::group(['prefix' => 'apoteker'], function() {
+    Route::get('/dataObat', [ApotekerController::class, 'dataObat']);
 
 });
 
