@@ -12,7 +12,7 @@
         @csrf
         @method('POST')
         <div>
-            <label for="">Email</label>
+            <label for="">Email / Username</label>
             <input type="text" class="shadow-sm appearance-none border rounded w-full p-3"
             placeholder="Email" name="email">
         </div>

@@ -11,14 +11,26 @@ class AuthController extends Controller
    
     //Profim Page
 
-    public function index(){
-
+    public function index()
+    {
+        if(Auth::user()->role === 'admin'){
         return view('auth.dashboard');
+        }
+        elseif (Auth::user()->role === 'resepsionis') {
+            return view('receptionist.index');
+        }
+        elseif (Auth::user()->role === 'dokter') {
+            return view('dokter.index');
+        }
+        elseif (Auth::user()->role === 'apoteker') {
+            return view('apoteker.index');
+        }
     }
     
     //Manage connection
    
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         
         //memungkinkan kita untuk mengambil semua data dari sebuah permintaan
 
@@ -42,7 +54,18 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login_page(){
+    public function login_page()
+    {
         return view('welcome');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+ 
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }
