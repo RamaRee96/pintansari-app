@@ -12,16 +12,15 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('rekam_medis_has_obats', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('usia');
-            $table->enum('jenis_kelamin', ['pria', 'wanita']);
-            $table->date('tanggal_lahir');
-            $table->string('alamat');
-            $table->string('no_telp');
-            $table->string('pekerjaan');
+            $table->unsignedBigInteger('rekam_medis_id');
+            $table->unsignedBigInteger('obat_id');
             $table->timestamps();
+
+            $table->foreign('rekam_medis_id')->references('id')->on('rekam_medis')->onDelete('cascade');
+            $table->foreign('obat_id')->references('id')->on('obats')->onDelete('cascade');
+
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('rekam_medis_has_obats');
     }
 };

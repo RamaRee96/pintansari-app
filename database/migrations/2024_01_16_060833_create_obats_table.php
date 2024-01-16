@@ -12,15 +12,13 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('obats', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('usia');
-            $table->enum('jenis_kelamin', ['pria', 'wanita']);
-            $table->date('tanggal_lahir');
-            $table->string('alamat');
-            $table->string('no_telp');
-            $table->string('pekerjaan');
+            $table->integer('harga');
+            $table->string('kandungan');
+            $table->enum('status', ['tersedia', 'tidak tersedia']);
+            $table->integer('stock');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('obats');
     }
 };

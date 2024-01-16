@@ -4,7 +4,7 @@
 
 <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
   <p class="text-xl px-5 mt-6 flex items-center">
-    <i class="fas fa-user mr-3"></i> Pasien Baru
+    <i class="fas fa-user mr-3"></i> Rekam Medis Baru
   </p>
   <div class="w-full flex justify-around px-5">
 
@@ -12,7 +12,7 @@
       @if(Session::get('sukses'))
       <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
         role="alert">
-        <span class="font-medium">Sukses</span> Pasien Berhasil di Tambahkan
+        <span class="font-medium">Sukses</span> Rekam Medis Berhasil di Tambahkan
       </div>
       @endif
       <div class="leading-loose">

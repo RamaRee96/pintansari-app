@@ -10,47 +10,47 @@
             Total Resepsionis
           </h3>
           <h1>
-            2
+            {{ $totalResepsionis }}
           </h1>
         </div>
         <span class=" text-green-500">
           <i class="fas fa-notes-medical fa-5x"></i>
-      </span>
+        </span>
       </div>
     </div>
   </div>
 
   <div class="bg-white p-6 rounded-md"">
-    <div class="card-content">
-      <div class="flex items-center justify-between">
-        <div class="widget-label">
-          <h3>
-            Total Dokter
-          </h3>
-          <h1>
-            2
-          </h1>
-        </div>
-        <span class="icon widget-icon text-blue-500"><i class="fas fa-stethoscope fa-5x"></i></span>
+    <div class=" card-content">
+    <div class="flex items-center justify-between">
+      <div class="widget-label">
+        <h3>
+          Total Dokter
+        </h3>
+        <h1>
+          {{ $totalDokter }}
+        </h1>
       </div>
+      <span class="icon widget-icon text-blue-500"><i class="fas fa-stethoscope fa-5x"></i></span>
     </div>
   </div>
+</div>
 
-  <div class="bg-white p-6 rounded-md"">
-    <div class="card-content">
-      <div class="flex items-center justify-between">
-        <div class="widget-label">
-          <h3>
-            Total Apoteker
-          </h3>
-          <h1>
-            1
-          </h1>
-        </div>
-        <span class="icon widget-icon text-red-500"><i class="fas fa-user-nurse fa-5x"></i></span>
-      </div>
+<div class="bg-white p-6 rounded-md"">
+    <div class=" card-content">
+  <div class="flex items-center justify-between">
+    <div class="widget-label">
+      <h3>
+        Total Apoteker
+      </h3>
+      <h1>
+        {{ $totalApoteker }}
+      </h1>
     </div>
+    <span class="icon widget-icon text-red-500"><i class="fas fa-user-nurse fa-5x"></i></span>
   </div>
+</div>
+</div>
 </div>
 </div>
 

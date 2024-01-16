@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Obat;
+use App\Models\Patient;
+use App\Models\RekamMedis;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,17 +18,23 @@ class AuthController extends Controller
 
     public function index()
     {
-        if(Auth::user()->role === 'admin'){
-        return view('auth.dashboard');
-        }
-        elseif (Auth::user()->role === 'resepsionis') {
-            return view('receptionist.index');
-        }
-        elseif (Auth::user()->role === 'dokter') {
-            return view('dokter.index');
-        }
-        elseif (Auth::user()->role === 'apoteker') {
-            return view('apoteker.index');
+        if(Auth::user()->role === 'admin') {
+            $totalResepsionis = User::where('role', 'resepsionis')->count();
+            $totalDokter = User::where('role', 'dokter')->count();
+            $totalApoteker = User::where('role', 'apoteker')->count();
+            return view('auth.dashboard', compact('totalResepsionis', 'totalDokter', 'totalApoteker'));
+        } elseif (Auth::user()->role === 'resepsionis') {
+            $totalPasien = Patient::count();
+            $totalPasienInMonth = Patient::whereMonth('created_at', Carbon::now()->month)->whereYear('created_at', Carbon::now()->year)->count();
+            $totalPasienToday = Patient::whereDate('created_at', Carbon::today())->count();
+
+            return view('receptionist.index', compact('totalPasien', 'totalPasienInMonth', 'totalPasienToday'));
+        } elseif (Auth::user()->role === 'dokter') {
+            $totalAntrian = RekamMedis::where('status', 'antri')->count();
+            return view('dokter.index', compact('totalAntrian'));
+        } elseif (Auth::user()->role === 'apoteker') {
+            $totalObat = Obat::count();
+            return view('apoteker.index', compact('totalObat'));
         }
     }
     
@@ -41,7 +52,7 @@ class AuthController extends Controller
             'password'=> 'required'
         ]);
 
-        if (Auth::attempt($rules)){
+        if (Auth::attempt($rules)) {
 
             $request->session()->regenerate();
 

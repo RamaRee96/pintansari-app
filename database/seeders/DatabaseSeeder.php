@@ -2,6 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Obat;
+use App\Models\Pasien;
+use App\Models\Patient;
+use App\Models\RekamMedis;
+use App\Models\RekamMedisHasObat;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,30 +23,34 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         User::create([
             "name" => "admin",
-            "email" => "adminklinik@gmail.com",
+            "email" => "admin@gmail.com",
             "password" => bcrypt('password'),
             "role" => "admin",
         ]);
-
         User::create([
-            "name" => "resepsionis 1",
-            "email" => "resepsionis@gmail.com",
+            "name" => "resepsionis",
+            "email" => "user2@gmail.com",
             "password" => bcrypt('password'),
             "role" => "resepsionis",
         ]);
         User::create([
-            "name" => "dokter 1",
-            "email" => "dokter@gmail.com",
-            "password" => bcrypt('password'),
-            "role" => "dokter",
-        ]);
-        User::create([
-            "name" => "apoteker 1",
-            "email" => "apoteker@gmail.com",
+            "name" => "apoteker",
+            "email" => "user3@gmail.com",
             "password" => bcrypt('password'),
             "role" => "apoteker",
         ]);
+        User::create([
+            "name" => "doktor",
+            "email" => "user4@gmail.com",
+            "password" => bcrypt('password'),
+            "role" => "dokter",
+        ]);
 
-        User::factory(1)->create();
+
+        User::factory()->count(10)->create();
+        Patient::factory()->count(10)->create();
+        RekamMedis::factory()->count(10)->create();
+        Obat::factory()->count(10)->create();
+        RekamMedisHasObat::factory()->count(10)->create();
     }
 }
