@@ -25,8 +25,8 @@ class AuthController extends Controller
             return view('auth.dashboard', compact('totalResepsionis', 'totalDokter', 'totalApoteker'));
         } elseif (Auth::user()->role === 'resepsionis') {
             $totalPasien = Patient::count();
-            $totalPasienInMonth = Patient::whereMonth('created_at', Carbon::now()->month)->whereYear('created_at', Carbon::now()->year)->count();
-            $totalPasienToday = Patient::whereDate('created_at', Carbon::today())->count();
+            $totalPasienInMonth = RekamMedis::whereMonth('created_at', Carbon::now()->month)->whereYear('created_at', Carbon::now()->year)->count();
+            $totalPasienToday = RekamMedis::whereDate('created_at', Carbon::today())->count();
 
             return view('receptionist.index', compact('totalPasien', 'totalPasienInMonth', 'totalPasienToday'));
         } elseif (Auth::user()->role === 'dokter') {

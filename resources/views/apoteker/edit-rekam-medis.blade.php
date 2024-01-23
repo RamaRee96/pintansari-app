@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="w-full overflow-x-hidden border-t flex flex-col">
-  <main class="w-full h-screen flex-grow p-6">
+  <main class="w-full h-screen flex-grow p-6 mb-32">
     @if(Session::get('sukses'))
     <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
       role="alert">
@@ -139,8 +139,8 @@
             </tbody>
           </table>
         </div>
-
       </div>
+
       <div class="mb-6">
         <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Periksa (
           Sudah/Belum Periksa/Selesai )</label>
@@ -153,10 +153,19 @@
         </select>
       </div>
 
-      <button type="submit"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+      <div class="flex gap-5">
+        <button type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        <a href="/apoteker/generate-nota/{{ $data->id }}"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Cetak Nota
+        </a>
+        <a href="/apoteker/generate-rekam-medis/{{ $data->id }}"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Cetak Rekam Medis
+        </a>
+      </div>
     </form>
-
 
   </main>
 

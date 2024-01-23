@@ -4,14 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Obat;
 use App\Models\RekamMedis;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class ApotekerController extends Controller
 {
-    public function dataObat()
+    public function dataObat(Request $request)
     {
-        $data = Obat::orderBy('created_at', 'DESC')->paginate(5);
+        if($request->q) {
+            $data = Obat::orderBy('created_at', 'DESC')->where('nama', 'LIKE', '%' . $request->q . '%')->paginate(10);
+        } else {
+            $data = Obat::orderBy('created_at', 'DESC')->paginate(10);
+
+        }
+
+       
         return view('/apoteker/dataObat', compact('data'));
     }
 
@@ -73,9 +81,16 @@ class ApotekerController extends Controller
         return redirect()->back()->with('sukses', true);
     }
 
-    public function pasienSudahDiperiksa()
+    public function pasienSudahDiperiksa(Request $request)
     {
-        $data = RekamMedis::where('status', 'sudah diperiksa')->orderBy('created_at', 'ASC')->whereDate('created_at', Carbon::now())->paginate(5);
+        if($request->q) {
+            $data = RekamMedis::where('status', 'sudah diperiksa')->orderBy('created_at', 'ASC')->whereDate('created_at', Carbon::now())->whereHas('patient', function ($query) use ($request) {
+                $query->where('nama', 'LIKE', '%' . $request->q . '%');
+            })->paginate(10);
+        } else {
+            $data = RekamMedis::where('status', 'sudah diperiksa')->orderBy('created_at', 'ASC')->whereDate('created_at', Carbon::now())->paginate(5);
+        }
+
         return view('apoteker.pasien-sudah-diperiksa', compact('data'));
     }
 
@@ -100,4 +115,88 @@ class ApotekerController extends Controller
         return redirect()->back()->with('sukses', true);
 
     }
+
+    public function generateNota($id)
+    {
+
+        $rekamMedis = RekamMedis::where('id', $id)->with('obats')->first();
+        $totalHargaObat = 0;
+        $biayaPelayanan = 70000;
+
+        
+        foreach ($rekamMedis->obats as $obat) {
+            $totalHargaObat += $obat->harga;
+        }
+
+        $totalPembayaran =  $biayaPelayanan + $totalHargaObat;
+
+        $logo = asset('/images/pintansari.png');
+
+        Carbon::setLocale('id');
+
+        $currentDate = Carbon::now()->translatedFormat('j F Y');
+  
+        $data = [
+            'title' => 'Nota-' . $rekamMedis->patient->nama,
+            'date' => $currentDate,
+            'data' => $rekamMedis,
+            'totalHargaObat' => $totalHargaObat,
+            'biayaPelayanan' => $biayaPelayanan,
+            'totalPembayaran' => $totalPembayaran,
+            'logo' => $logo
+        ];
+          
+        $pdf = PDF::setOptions([
+            'isHTML5ParserEnabled' => true,
+            'isRemoteEnabled' => true
+        ]);
+        $pdf = Pdf::loadView('apoteker.template-nota', $data);
+     
+        $pdfName = 'Nota-' . $rekamMedis->patient->nama . '.pdf';
+        
+        return $pdf->stream($pdfName);
+
+    }
+
+    public function generateRekamMedis($id)
+    {
+
+        $rekamMedis = RekamMedis::where('id', $id)->with('obats')->first();
+        $totalHargaObat = 0;
+        $biayaPelayanan = 70000;
+
+        
+        foreach ($rekamMedis->obats as $obat) {
+            $totalHargaObat += $obat->harga;
+        }
+
+        $totalPembayaran =  $biayaPelayanan + $totalHargaObat;
+
+        $logo = asset('/images/pintansari.png');
+
+        Carbon::setLocale('id');
+
+        $currentDate = Carbon::now()->translatedFormat('j F Y');
+  
+        $data = [
+            'title' => 'Rekam Medis-' . $rekamMedis->patient->nama,
+            'date' => $currentDate,
+            'data' => $rekamMedis,
+            'totalHargaObat' => $totalHargaObat,
+            'biayaPelayanan' => $biayaPelayanan,
+            'totalPembayaran' => $totalPembayaran,
+            'logo' => $logo
+        ];
+          
+        $pdf = PDF::setOptions([
+            'isHTML5ParserEnabled' => true,
+            'isRemoteEnabled' => true
+        ]);
+        $pdf = Pdf::loadView('apoteker.template-pdf-rekam-medis', $data);
+
+        $pdfName = 'rekam-medis-' . $rekamMedis->patient->nama . '.pdf';
+     
+        return $pdf->stream($pdfName);
+    }
+
 }

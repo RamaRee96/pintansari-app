@@ -57,7 +57,7 @@
           </label>
           <textarea id="keluhan" rows="4"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Write your thoughts here...">{{ $data->keluhan }}</textarea>
+            placeholder="Write your thoughts here..." readonly>{{ $data->keluhan }}</textarea>
         </div>
         <div>
           <label for="anamesis" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -65,7 +65,7 @@
           </label>
           <textarea id="anamesis" rows="4"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Write your thoughts here...">{{ $data->anamesis }}</textarea>
+            placeholder="Write your thoughts here.." readonly>{{ $data->anamesis }}</textarea>
         </div>
       </div>
       <div class="grid gap-6 mb-6 md:grid-cols-2">

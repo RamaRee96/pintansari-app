@@ -7,12 +7,21 @@ use App\Models\RekamMedis;
 use App\Models\RekamMedisHasObat;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DokterController extends Controller
 {
-    public function getRekamMedis()
+    public function getRekamMedis(Request $request)
     {
-        $data = RekamMedis::where('status', 'antri')->whereDate('created_at', Carbon::today())->paginate(5);
+        if($request->q) {
+            $data = RekamMedis::where('status', 'antri')->whereDate('created_at', Carbon::today())->orderBy('created_at', "ASC")->whereHas('patient', function ($query) use ($request) {
+                $query->where('nama', 'LIKE', '%' . $request->q . '%');
+            })->paginate(10);
+        } else {
+            $data = RekamMedis::where('status', 'antri')->whereDate('created_at', Carbon::today())->orderBy('created_at', "ASC")->paginate(10);
+
+
+        }
         return view('dokter.rekam-medis', compact('data'));
     }
 
@@ -43,14 +52,10 @@ class DokterController extends Controller
         RekamMedis::where('id', $id)->update([
             'keterangan' => $request->keterangan,
             'diagnosa' => $request->diagnosa,
-            'status' => $request->status
+            'status' => $request->status,
+            'dokter_id' => Auth::user()->id
         ]);
 
         return redirect()->back()->with('sukses', true);
-    }
-
-    public function dataResep()
-    {
-        return view('dokter.dataResep');
     }
 }

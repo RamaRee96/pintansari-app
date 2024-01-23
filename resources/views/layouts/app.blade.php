@@ -9,9 +9,9 @@
 
     <!-- Tailwind -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    {{--
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+    <!-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> -->
     @livewireStyles
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
@@ -117,10 +117,6 @@
             <a href="/dokter/rekam-medis" class="flex items-center text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Data Rekam Medis Pasien
-            </a>
-            <a href="/dokter/dataResep" class="flex items-center text-white py-4 pl-6 nav-item">
-                <i class="fas fa-tachometer-alt mr-3"></i>
-                Data Resep
             </a>
             @elseif (Auth::user()->role === 'apoteker')
             <div class="p-6">
@@ -228,6 +224,7 @@
     <!-- ChartJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
         integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 
     <script>
         var chartOne = document.getElementById('chartOne');

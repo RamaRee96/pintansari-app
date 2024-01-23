@@ -9,14 +9,14 @@
         <p class="text-xl py-5 px-5 mt-6 flex items-center">
           <i class="fas fa-user mr-3"></i> Resepsionis Baru
         </p>
-        <form class="p-10 bg-white rounded shadow-xl" action="{{ route('store_apoteker') }}" method="POST">
+        <form class="p-10 bg-white rounded shadow-xl" action="{{ route('store_resepsionis') }}" method="POST">
           @method('POST')
           @csrf
           <div class="text-lg border-b-2 border-slate-500">Data Resepsionis</div>
           @if(Session::get('sukses'))
           <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 mt-3"
             role="alert">
-            <span class="font-medium">Sukses!</span> Apoteker Berhasil Di Tambahkan
+            <span class="font-medium">Sukses!</span> Resepsionis Berhasil Di Tambahkan
           </div>
           @endif
           <div class="mt-2">

@@ -71,14 +71,27 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/tambahApoteker', [AdminController::class, 'createApoteker']);
     Route::post('/tambahApoteker', [AdminController::class, 'storeApoteker'])->name('store_apoteker');
 
+    Route::get('/edit-pegawai/{id}', [AdminController::class, 'editPegawai']);
+    Route::post('/edit-pegawai/{id}', [AdminController::class, 'updatePegawai'])->name('updatePegawaiAdmin');
+    Route::post('/delete-pegawai/{id}', [AdminController::class, 'deletePegawai'])->name('deletePegawaiAdmin');
+
+
 });
 
 // Route Resepsionis
 Route::group(['prefix' => 'resepsionis', 'middleware' => 'auth'], function () {
     Route::get('/dataPasien', [ReceptionistController::class, 'dataPasien']);
-    Route::get('/editDataPasien', [ReceptionistController::class, 'editDataPasien']);
+    Route::get('/editDataPasien/{id}', [ReceptionistController::class, 'editDataPasien']);
     Route::get('/rekam-medis', [ReceptionistController::class, 'rekamMedis']);
     Route::get('/rekam-medis/create', [ReceptionistController::class, 'createRekamMedis']);
+    Route::post('/rekam-medis/create', [ReceptionistController::class, 'storeRekamMedis'])->name('storeRekamMedisResepsionis');
+    Route::get('/edit/rekam-medis/{id}', [ReceptionistController::class, 'showRekamMedis']);
+    Route::post('/edit/rekam-medis/{id}', [ReceptionistController::class, 'updateRekamMedis'])->name('updateRekamMedisResepsionis');
+    Route::post('/delete/rekam-medis/{id}', [ReceptionistController::class, 'removeRekamMedis'])->name('removeRekamMedisResepsionis');
+    Route::post('/delete/pasien/{id}', [ReceptionistController::class, 'removePasien'])->name('removePasienRekamMedis');
+
+    Route::post('/update/pasien/{id}', [ReceptionistController::class, 'updatePasien'])->name('updatePasienResepsionis');
+
 
 });
 
@@ -88,7 +101,6 @@ Route::group(['prefix' => 'dokter', 'middleware' => 'auth'], function () {
     Route::get('/rekam-medis', [DokterController::class, 'getRekamMedis']);
     Route::get('/rekam-medis/{id}', [DokterController::class, 'showRekamMedis']);
     Route::post('/rekam-medis/{id}', [DokterController::class, 'updateRekamMedis'])->name("updateRekamMedisDokter");
-    Route::get('/dataResep', [DokterController::class, 'dataResep']);
 
 });
 
@@ -104,5 +116,7 @@ Route::group(['prefix' => 'apoteker', 'middleware' => 'auth'], function () {
     Route::get('/pasien-sudah-diperiksa', [ApotekerController::class, 'pasienSudahDiperiksa']);
     Route::get('/edit-rekam-medis/{id}', [ApotekerController::class, 'editRekamMedis']);
     Route::post('/edit-rekam-medis/{id}', [ApotekerController::class, 'updateRekamMedis'])->name('updateRekamMedisApoteker');
+    Route::get('/generate-nota/{id}', [ApotekerController::class, 'generateNota']);
+    Route::get('/generate-rekam-medis/{id}', [ApotekerController::class, 'generateRekamMedis']);
 
 });

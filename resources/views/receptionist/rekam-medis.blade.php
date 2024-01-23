@@ -2,52 +2,39 @@
 @section('content')
 
 <div class="w-full overflow-x-hidden border-t flex flex-col">
-  <main class="w-full h-screen flex-grow p-6">
+  <main class="w-full min-h-screen flex-grow p-6">
+    @if(Session::get('sukses'))
+    <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+      role="alert">
+      <span class="font-medium">Sukses</span> Berhasil Menghapus Rekam Medis
+    </div>
+    @endif
     <h1 class="text-3xl text-black pb-6">Data Rekam Medis</h1>
 
     <h2 class="text-2xl text-gray-500 pb-2">Data Rekam Medis Hari Ini</h2>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow shadow-md sm:rounded-lg">
       <div
         class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-gray-100 dark:bg-gray-900">
-        <div>
-          <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
-            class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 gap-2 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            type="button">
-            <span class="sr-only">Action button</span>
-            Action
-            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-              viewBox="0 0 10 6">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="m1 1 4 4 4-4" />
-            </svg>
-          </button>
-          <!-- Dropdown menu -->
-          <div id="dropdownAction"
-            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownActionButton">
-              <li>
-                <a href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
-              </li>
-              <li>
-                <a href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Promote</a>
-              </li>
-              <li>
-                <a href="#"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Activate
-                  account</a>
-              </li>
-            </ul>
-            <div class="py-1">
-              <a href="#"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
-                User</a>
-            </div>
-          </div>
+        
+        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Filter
+        <svg class="w-2.5 h-2.5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+        </svg>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div id="dropdown" class="z-20 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 p-3">
+          <form class="max-w-sm mx-auto form-filter">
+            <div class="mb-5">
+              <label for="month" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Bulan</label>
+              <input type="month" name="bulan" id="filterDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required value="{{ request('bulan') }}">
+            </div>         
+          </form>
+
         </div>
+
         <label for="table-search" class="sr-only">Search</label>
-        <div class="relative">
+        <form class="relative form-filter">
           <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center p-2 ps-3 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="none" viewBox="0 0 20 20">
@@ -55,10 +42,10 @@
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
             </svg>
           </div>
-          <input type="text" id="table-search-users"
+          <input type="text" id="filterSearch" name="q" value="{{ request('q') }}"
             class="block pl-7 p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search for rekam medis">
-        </div>
+        </form>
       </div>
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-400 dark:bg-gray-700 dark:text-gray-400">
@@ -90,14 +77,21 @@
               {{ $item->created_at->format('d-m-Y') }}
             </td>
             <td class="flex items-center px-6 py-4">
-              <a href="/resepsionis/editDataPasien"
+              <a href="/resepsionis/edit/rekam-medis/{{ $item->id }}"
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-              <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
+              <form action="{{ route('removeRekamMedisResepsionis', ['id' => $item->id]) }}" method="POST">
+              @csrf
+                <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</button>
+              </form>
             </td>
           </tr>
           @endforeach
         </tbody>
       </table>
+
+      <div class="p-3">
+        {{ $data->links() }}
+      </div>
     </div>
 
 
@@ -107,5 +101,41 @@
     Copyright © Your Klinik Pintan Sari 2023
   </footer>
 </div>
+
+ <script>
+        $(document).ready(function() {
+        
+            // Handle search button click event
+            $('#filterDate').on('change', function() {
+                var urlParams = new URLSearchParams(window.location.search);
+
+                // Get the search input value
+                var searchQuery = $('#filterSearch').val();
+
+                // Get the selected filter value
+                var filterValue = $('#filterDate').val();
+
+                // Update or add the 'q' parameter
+                if (searchQuery !== null && searchQuery !== '') {
+                    urlParams.set('q', encodeURIComponent(searchQuery));
+                } else {
+                    urlParams.delete('q');
+                }
+
+                // Update or add the 'bulan' parameter
+                if (filterValue !== null && filterValue !== '') {
+                    urlParams.set('bulan', encodeURIComponent(filterValue));
+                } else {
+                    urlParams.delete('bulan');
+                }
+
+                // Build the new URL with updated parameters
+                var newUrl = '/resepsionis/rekam-medis?' + urlParams.toString();
+
+                // Redirect to the new URL
+                window.location.href = newUrl;
+            });
+        });
+</script>
 
 @endsection
