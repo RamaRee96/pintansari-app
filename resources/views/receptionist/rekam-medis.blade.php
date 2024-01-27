@@ -11,7 +11,7 @@
     @endif
     <h1 class="text-3xl text-black pb-6">Data Rekam Medis</h1>
 
-    <h2 class="text-2xl text-gray-500 pb-2">Data Rekam Medis Hari Ini</h2>
+    <h2 class="text-2xl text-gray-500 pb-2">Data Rekam Medis</h2>
     <div class="relative overflow shadow-md sm:rounded-lg">
       <div
         class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-gray-100 dark:bg-gray-900">
@@ -27,7 +27,7 @@
           <form class="max-w-sm mx-auto form-filter">
             <div class="mb-5">
               <label for="month" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Bulan</label>
-              <input type="month" name="bulan" id="filterDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required value="{{ request('bulan') }}">
+              <input type="month" name="bulan" id="filterDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required value="{{ request('bulan') ?: now()->format('Y-m') }}">
             </div>         
           </form>
 

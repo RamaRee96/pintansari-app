@@ -3,28 +3,28 @@
 
 <div class="w-full overflow-x-hidden border-t flex flex-col">
   <main class="w-full h-screen flex-grow p-6">
-    <h1 class="text-3xl text-black pb-6">Obat</h1>
+    <h1 class="text-3xl text-black pb-6">Daftar Pasien Yang Sudah Di Periksa</h1>
 
-    <h2 class="text-2xl text-gray-500 pb-2">Data Obat</h2>
-    <a href="/apoteker/tambah-obat">
-      <button type="button"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-          stroke="#ffffff">
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-          <g id="SVGRepo_iconCarrier">
-            <path d="M7 12L12 12M12 12L17 12M12 12V7M12 12L12 17" stroke="#ffffff" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round"></path>
-          </g>
-        </svg>
-        Tambah Obat
-      </button>
-    </a>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative shadow-md sm:rounded-lg">
       <div
-        class="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-gray-100 dark:bg-gray-900">
-       
+        class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-gray-100 dark:bg-gray-900">
+        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Filter
+        <svg class="w-2.5 h-2.5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+        </svg>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div id="dropdown" class="z-20 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 p-3">
+          <form class="max-w-sm mx-auto form-filter">
+            <div class="mb-5">
+              <label for="month" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Bulan</label>
+              <input type="month" name="bulan" id="filterDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required value="{{ request('bulan') ?: now()->format('Y-m') }}">
+            </div>         
+          </form>
+
+        </div>
+
         <label for="table-search" class="sr-only">Search</label>
         <form class="relative">
           <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center p-2 ps-3 pointer-events-none">
@@ -34,7 +34,7 @@
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
             </svg>
           </div>
-          <input type="text" id="table-search-users" name="q" value="{{ request('q') }}"
+          <input type="text" id="filterSearch" name="q" value="{{ request('q') }}"
             class="block pl-7 p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search for obat">
         </form>
@@ -95,5 +95,39 @@
     Copyright © Your Klinik Pintan Sari 2023
   </footer>
 </div>
+ <script>
+        $(document).ready(function() {
+        
+            // Handle search button click event
+            $('#filterDate').on('change', function() {
+                var urlParams = new URLSearchParams(window.location.search);
 
+                // Get the search input value
+                var searchQuery = $('#filterSearch').val();
+
+                // Get the selected filter value
+                var filterValue = $('#filterDate').val();
+
+                // Update or add the 'q' parameter
+                if (searchQuery !== null && searchQuery !== '') {
+                    urlParams.set('q', encodeURIComponent(searchQuery));
+                } else {
+                    urlParams.delete('q');
+                }
+
+                // Update or add the 'bulan' parameter
+                if (filterValue !== null && filterValue !== '') {
+                    urlParams.set('bulan', encodeURIComponent(filterValue));
+                } else {
+                    urlParams.delete('bulan');
+                }
+
+                // Build the new URL with updated parameters
+                var newUrl = '/apoteker/pasien-sudah-diperiksa?' + urlParams.toString();
+
+                // Redirect to the new URL
+                window.location.href = newUrl;
+            });
+        });
+</script>
 @endsection

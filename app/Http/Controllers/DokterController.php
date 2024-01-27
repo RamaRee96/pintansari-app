@@ -14,11 +14,11 @@ class DokterController extends Controller
     public function getRekamMedis(Request $request)
     {
         if($request->q) {
-            $data = RekamMedis::where('status', 'antri')->whereDate('created_at', Carbon::today())->whereHas('patient', function ($query) use ($request) {
+            $data = RekamMedis::where('status', 'antri')->whereDate('created_at', Carbon::today())->orderBy('created_at', "ASC")->whereHas('patient', function ($query) use ($request) {
                 $query->where('nama', 'LIKE', '%' . $request->q . '%');
             })->paginate(10);
         } else {
-            $data = RekamMedis::where('status', 'antri')->whereDate('created_at', Carbon::today())->paginate(10);
+            $data = RekamMedis::where('status', 'antri')->whereDate('created_at', Carbon::today())->orderBy('created_at', "ASC")->paginate(10);
 
 
         }

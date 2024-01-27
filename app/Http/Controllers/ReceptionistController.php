@@ -36,15 +36,15 @@ class ReceptionistController extends Controller
 
     public function rekamMedis(Request $request)
     {
-        if($request->q || $request->bulan) {
+        if($request->q) {
             $data = RekamMedis::whereHas('patient', function ($query) use ($request) {
                 $query->where('nama', 'LIKE', '%' . $request->q . '%');
             })
-                    ->whereYear('created_at', '=', substr($request->bulan, 0, 4))
-                    ->whereMonth('created_at', '=', substr($request->bulan, 5, 2))
-                    ->paginate(10);
+       ->whereYear('created_at', '=', $request->bulan ? substr($request->bulan, 0, 4) : Carbon::now()->year)
+       ->whereMonth('created_at', '=', $request->bulan ? substr($request->bulan, 5, 2) : Carbon::now()->month)
+       ->paginate(10);
         } else {
-            $data = RekamMedis::whereDate('created_at', Carbon::today())->paginate(10);
+            $data = RekamMedis::whereDate('created_at', Carbon::today())->where('status', 'antri')->paginate(10);
         }
      
         return view('receptionist.rekam-medis', compact('data'));

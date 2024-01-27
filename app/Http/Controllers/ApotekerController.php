@@ -84,9 +84,11 @@ class ApotekerController extends Controller
     public function pasienSudahDiperiksa(Request $request)
     {
         if($request->q) {
-            $data = RekamMedis::where('status', 'sudah diperiksa')->orderBy('created_at', 'ASC')->whereDate('created_at', Carbon::now())->whereHas('patient', function ($query) use ($request) {
+            $data = RekamMedis::where('status', 'sudah diperiksa')->orderBy('created_at', 'ASC')->whereHas('patient', function ($query) use ($request) {
                 $query->where('nama', 'LIKE', '%' . $request->q . '%');
-            })->paginate(10);
+            })
+            ->whereYear('created_at', '=', $request->bulan ?substr($request->bulan, 0, 4) : Carbon::now()->year)
+            ->whereMonth('created_at', '=', $request->bulan ? substr($request->bulan, 5, 2) : Carbon::now()->month)->paginate(10);
         } else {
             $data = RekamMedis::where('status', 'sudah diperiksa')->orderBy('created_at', 'ASC')->whereDate('created_at', Carbon::now())->paginate(5);
         }
