@@ -53,11 +53,11 @@
 
                             {{ $item->patient->nama }} </td>
                         <td class="px-6 py-4">
-                            20-04-2020
+                           {{ $item->created_at->format('d-m-Y') }}
                         </td>
                         <td class="flex items-center px-6 py-4">
                             <a href="/dokter/rekam-medis/{{ $item->id }}"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat</a>
+                                class="font-medium dark:text-blue-500 px-3 py-2 bg-gray-500 rounded-md text-white">Lihat</a>
                         </td>
                     </tr>
                     @endforeach

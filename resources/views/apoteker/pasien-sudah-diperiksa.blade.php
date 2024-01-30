@@ -77,7 +77,7 @@
             </td>
             <td class="flex items-center px-6 py-4">
               <a href="/apoteker/edit-rekam-medis/{{ $item->id }}"
-                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+                class="font-medium px-3 py-2 bg-gray-500 text-white rounded-md">View</a>
             </td>
           </tr>
           @endforeach

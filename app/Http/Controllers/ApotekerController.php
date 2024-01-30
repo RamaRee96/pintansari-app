@@ -123,7 +123,7 @@ class ApotekerController extends Controller
 
         $rekamMedis = RekamMedis::where('id', $id)->with('obats')->first();
         $totalHargaObat = 0;
-        $biayaPelayanan = 70000;
+        $biayaPelayanan = 75000;
 
         
         foreach ($rekamMedis->obats as $obat) {
@@ -152,7 +152,7 @@ class ApotekerController extends Controller
             'isHTML5ParserEnabled' => true,
             'isRemoteEnabled' => true
         ]);
-        $pdf = Pdf::loadView('apoteker.template-nota', $data);
+        $pdf = Pdf::loadView('apoteker.template-nota', $data)->setPaper('a5');
      
         $pdfName = 'Nota-' . $rekamMedis->patient->nama . '.pdf';
         
@@ -165,7 +165,7 @@ class ApotekerController extends Controller
 
         $rekamMedis = RekamMedis::where('id', $id)->with('obats')->first();
         $totalHargaObat = 0;
-        $biayaPelayanan = 70000;
+        $biayaPelayanan = 75000;
 
         
         foreach ($rekamMedis->obats as $obat) {

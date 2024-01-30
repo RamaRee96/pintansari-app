@@ -129,4 +129,28 @@ class ReceptionistController extends Controller
 
     }
 
+    public function viewDataPasien($id)
+    {
+        $pasien = Patient::with(['rekam_medis' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->where('id', $id)->first();
+        $rekamMedis = $pasien->rekam_medis()->paginate(10);
+
+
+        return view('receptionist.show-data-pasien', compact('pasien', 'rekamMedis'));
+    }
+
+    public function showFullRekamMedis($id)
+    {
+        $data = RekamMedis::where('id', $id)->with('obats')->first();
+        $totalHargaObat = 0;
+
+        foreach ($data->obats as $obat) {
+            $totalHargaObat += $obat->harga;
+        }
+
+
+        return view('receptionist.show-full-rekam-medis', compact('data', 'totalHargaObat'));
+    }
+
 }

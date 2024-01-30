@@ -91,13 +91,13 @@
                             </span>
                             @endif
                         </td>
-                        <td class="flex items-center px-6 py-4">
+                        <td class="flex items-center px-6 py-4 gap-3">
                             <a href="/apoteker/edit-obat/{{ $item->id }}"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                class="font-medium  dark:text-blue-500 px-3 py-2 bg-yellow-500 text-white rounded-md">Edit</a>
                             <form action="{{ route('deleteObat', ['id' => $item->id]) }}" method="POST">
                                 @csrf
                                 <button
-                                    class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</button>
+                                    class="font-medium  dark:text-red-500 px-3 py-2 bg-red-500 text-white rounded-md">Remove</button>
                             </form>
                         </td>
                     </tr>

@@ -6,7 +6,7 @@
   <title>Document</title>
   <style>
     body {
-      font-size: 12px;
+      font-size: 9px;
     }
 
      table {
@@ -135,6 +135,35 @@
           {{ $data->tensi }} hHg
         </td>
       </tr>
+    </tbody>
+  </table>
+    <h3>
+   Rincian Obat
+  </h3>
+  <table class="info-obat" style="width: 100%;" border="1">
+  <thead>
+    <tr>
+      <td>
+        Nama Obat
+      </td>
+      <td>
+        Harga
+      </td>
+    </tr>
+  </thead>
+    <tbody>   
+      @foreach($data->obats as $obat)
+        <tr>
+            <td>
+             <div style="width: 50px;">
+               {{ $obat->nama }}
+             </div>
+            </td>
+            <td>
+              Rp. {{ number_format($obat->harga, 0,0) }}
+            </td>
+        </tr>
+      @endforeach
     </tbody>
   </table>
   <h3>

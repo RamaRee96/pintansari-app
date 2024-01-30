@@ -26,6 +26,7 @@ class RekamMedisFactory extends Factory
             'tinggi' => $this->faker->numberBetween(140, 200),
             'tensi' => $this->faker->randomNumber(3) . '/' . $this->faker->randomNumber(2),
             'status' => $this->faker->randomElement(['antri', 'sudah diperiksa']),
+            'dokter_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }

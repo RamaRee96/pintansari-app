@@ -81,7 +81,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 // Route Resepsionis
 Route::group(['prefix' => 'resepsionis', 'middleware' => 'auth'], function () {
     Route::get('/dataPasien', [ReceptionistController::class, 'dataPasien']);
+    Route::get('/dataPasien/{id}', [ReceptionistController::class, 'viewDataPasien']);
     Route::get('/editDataPasien/{id}', [ReceptionistController::class, 'editDataPasien']);
+    Route::get('/rekam-medis-pasien/{id}/', [ReceptionistController::class, 'showFullRekamMedis']);
     Route::get('/rekam-medis', [ReceptionistController::class, 'rekamMedis']);
     Route::get('/rekam-medis/create', [ReceptionistController::class, 'createRekamMedis']);
     Route::post('/rekam-medis/create', [ReceptionistController::class, 'storeRekamMedis'])->name('storeRekamMedisResepsionis');
