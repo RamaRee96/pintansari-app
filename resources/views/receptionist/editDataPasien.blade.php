@@ -2,11 +2,11 @@
 
 @section('content')
 
-<div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
+<div class="w-full h-screen overflow-x-hidden border-t flex justify-center items-center flex-col">
   <p class="text-xl px-5 mt-6 flex items-center">
     <i class="fas fa-user mr-3"></i> Edit Pasien
   </p>
-  <div class="w-full px-5">
+  <div class="w-full px-5 flex justify-around">
 
     <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
       @if(Session::get('sukses'))
