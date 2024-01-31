@@ -9,7 +9,7 @@
       <span class="font-medium">Sukses.</span> Berhasil Update Data Obat
     </div>
     @endif
-    <h1 class="text-3xl text-black pb-6">Tambah Obat</h1>
+    <h1 class="text-3xl text-black pb-6">Edit Obat</h1>
 
     <form method="POST" action="{{ route('updateObat', ['id' => $obat->id]) }}">
       @csrf

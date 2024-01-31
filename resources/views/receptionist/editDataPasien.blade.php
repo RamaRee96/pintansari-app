@@ -6,7 +6,7 @@
   <p class="text-xl px-5 mt-6 flex items-center">
     <i class="fas fa-user mr-3"></i> Edit Pasien
   </p>
-  <div class="w-full flex justify-around px-5">
+  <div class="w-full px-5">
 
     <div class="w-full lg:w-1/2 my-6 pr-0 lg:pr-2">
       @if(Session::get('sukses'))
