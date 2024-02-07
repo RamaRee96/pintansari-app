@@ -10,20 +10,33 @@
     }
 
      table {
+        width: 100%;
        border-collapse: collapse;
     }
 
-    table.info-obat td, th {
+    table.bordered td, th {
       border: 1px solid #dddddd;
       text-align: left;
       padding: 8px;
     }
+    table.rincian td, th {
+      text-align: left;
+      padding: 8px;
+    }
+
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+
   </style>
 </head>
 <body>
   <table style="width: 100%;">
         <tr>
-            <td width="25%">
+            <td width="28%">
+              <img src="{{ public_path('images/pintansari.png') }}" alt="" style="width: 65px; padding-top: 20px;">
             </td>
             <td style="text-align: center; padding-top: 25px;">
              <h2>
@@ -140,7 +153,7 @@
     <h3>
    Rincian Obat
   </h3>
-  <table class="info-obat" style="width: 100%;" border="1">
+  <table class="bordered" style="width: 100%;" border="1">
   <thead>
     <tr>
       <td>
@@ -169,7 +182,7 @@
   <h3>
     Rincian Pembayaran
   </h3>
-  <table class="info-obat" style="width: 100%;" border="1">
+  <table class="bordered" style="width: 100%;" border="1">
     <tbody>   
       <tr>
         <td>
@@ -187,15 +200,16 @@
           Rp. {{ number_format($totalHargaObat, 0,0) }}
         </td>
       </tr>
+    </tbody>
+  </table>
+    <div style="width: 100%; height: 1px; background-color: black; margin: 10px 0;"></div>
+  <table class="rincian">
+    <tbody>
       <tr>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-       <td>
+       <td class="font-bold">
          Total Pembayaran
        </td>
-       <td>
+       <td class="font-bold">
         Rp. {{ number_format($totalPembayaran, 0,0) }}
        </td>
       </tr>

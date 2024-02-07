@@ -41,7 +41,10 @@
                             Nama
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Tanggal Periksa
+                           Alamat
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                           Tanggal Lahir
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Aksi
@@ -57,6 +60,9 @@
                         </th>
                         <td class="px-6 py-4">
                             {{ $item->nama }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $item->alamat }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $item->tanggal_lahir }}

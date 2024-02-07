@@ -28,13 +28,13 @@
     table td {
       padding-bottom: 10px;
     }
-
   </style>
 </head>
 <body>
-  <table style="width: 100%;">
+   <table style="width: 100%;">
         <tr>
-            <td width="25%">
+            <td width="28%">
+              <img src="{{ public_path('images/pintansari.png') }}" alt="" style="width: 65px; padding-top: 20px;">
             </td>
             <td style="text-align: center; padding-top: 25px;">
              <h2>

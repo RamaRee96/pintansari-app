@@ -34,7 +34,8 @@ class AuthController extends Controller
             return view('dokter.index', compact('totalAntrian'));
         } elseif (Auth::user()->role === 'apoteker') {
             $totalObat = Obat::count();
-            return view('apoteker.index', compact('totalObat'));
+            $totalAntrian = RekamMedis::where('status', 'sudah diperiksa')->whereDate('created_at', Carbon::today())->count();
+            return view('apoteker.index', compact('totalObat', 'totalAntrian'));
         }
     }
     
