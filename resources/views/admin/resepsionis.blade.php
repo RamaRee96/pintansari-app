@@ -82,12 +82,12 @@
                         <td class="px-6 py-4">
                             {{ $item->alamat }}
                         </td>
-                        <td class="flex items-center px-6 py-4">
-                            <a href="/admin/edit-pegawai/{{ $item->id }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="flex items-center px-6 py-4 gap-3">
+                            <a href="/admin/edit-pegawai/{{ $item->id }}" class="font-medium dark:text-blue-500 px-3 py-2 bg-yellow-500 rounded-md text-white">Edit</a>
                            <form action="{{ route('deletePegawaiAdmin', ['id' => $item->id]) }}" method="POST">
                            @csrf
                              <button type="submit"
-                                class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</button>
+                                class="font-medium dark:text-blue-500 px-3 py-2 bg-red-500 rounded-md text-white">Remove</button>
                            </form>
                         </td>
                     </tr>
